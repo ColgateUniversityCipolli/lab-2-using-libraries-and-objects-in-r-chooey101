@@ -75,13 +75,13 @@
 \begin{document}
 
 \vspace{-1in}
-\title{Lab XX -- MATH 240 -- Computational Statistics}
+\title{Lab 2 -- MATH 240 -- Computational Statistics}
 
 \author{
-  First Author \\
+  Charles Hooey \\
   Affiliation  \\
   Department  \\
-  {\tt email@domain}
+  {\tt chooey@colgate.edu}
 }
 
 \date{}
@@ -96,13 +96,12 @@ First part of a three-part lab that involves working with the program Essentia i
 \noindent \textbf{Keywords:} For Loops; Packages; Lists;
 
 \section{Introduction}
-Week 2's lab assignment was the first part of a three-part project that involves the sourcing and extraction of music data from a program called Essentia in an effort to determine the degree of contribution among different bands collaborating on the same song.  This program allows us to extract a wide variety of data from songs, though we must use its command prompt   to access it. However, Essentia's command prompt must be entered for every single song within the directory that you are looking to extract data from, which can take quite some time depending on the size of the song directory. To remedy such, task one of the assignment involves creating a batch file that will automate the generation of commands for all songs which can be used to process the entire song directory at once. After creating our batch file within part one, we begin proccessing json files through the jsonlite package for R, which allows us to extract the data for each song from Essentia.
-
+Week 2's lab assignment was the first part of a three-part project that involves the sourcing and extraction of music data from a program called Essentia in an effort to determine the degree of contribution among different bands collaborating on the same song.  This program allows us to extract a wide variety of data from songs, though we must use its command prompt to access it. However, Essentia's command prompt must be entered for every single song within the directory that you are looking to extract data from, which can take quite some time depending on the size of the song directory. To remedy such, task one of the assignment involves creating a batch file that will automate the generation of commands for all songs which can be used to process the entire song directory at once. After creating our batch file within part one, we begin proccessing json files through the jsonlite package for R \citep{jsonlite}, which allows us to extract the data for each song from Essentia.
 
 
 
 \section{Methods}
- As mentioned above, part one of this assignment involves the creation of a batch file in order to process every single song within our music directory through Essentia simultaneously. To create this batch file, a vector was created containing the names of all files in our music directory, so that we'd be able to reference them within R. Then, we used the strcount function from the stringr package in order to subset all directories within the MUSIC folder into the classifiation of artist, album, and track. Following such, two loops were established in order to iterate among all albums and song within the MUSIC folder. Within these loops, the strcount function was used to extract the name of the artist, album, and track from each song with each being assigned to an object. These objects were then pasted together with our necessary command line, and saved to an empty vector that would populate with every iteration of the loop. This code was then written to a text file, ready to be executed as a batch. For the second part of the lab, we processed an example json file using the jsonlite package for R. Using the fromJSON function, I was able to extract all Essentia data from the provided example json file. Furthermore, specific values, including: average loudness, mean of spectral energy, dancability, bpm, key, scale, and length were extracted using commands found on Essentia's website. Each type of data was then assigned to objects and printed using the paste function.
+ As mentioned above, part one of this assignment involves the creation of a batch file in order to process every single song within our music directory through Essentia simultaneously. To create this batch file, a vector was created containing the names of all files in our music directory, so that we'd be able to reference them within R. Then, we used the strcount function from the stringr package \citep{stringr} in order to subset all directories within the MUSIC folder into the classifiation of artist, album, and track. Following such, two loops were established in order to iterate among all albums and song within the MUSIC folder. Within these loops, the strcount function was used to extract the name of the artist, album, and track from each song with each being assigned to an object. These objects were then pasted together with our necessary command line, and saved to an empty vector that would populate with every iteration of the loop. This code was then written to a text file, ready to be executed as a batch. For the second part of the lab, we processed an example json file using the jsonlite package for R. Using the fromJSON function, I was able to extract all Essentia data from the provided example json file. Furthermore, specific values, including: average loudness, mean of spectral energy, dancability, bpm, key, scale, and length were extracted using commands found on Essentia's website. Each type of data was then assigned to objects and printed using the paste function.
  
 
 
@@ -117,8 +116,7 @@ Week 2's lab assignment was the first part of a three-part project that involves
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{2em}
 
-\noindent\textbf{Bibliography:} Note that when you add citations to your bib.bib file \emph{and}
-you cite them in your document, the bibliography section will automatically populate here.
+
 
 \begin{tiny}
 \bibliography{bib}
