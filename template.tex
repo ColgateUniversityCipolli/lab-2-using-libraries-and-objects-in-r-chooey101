@@ -1,0 +1,140 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath} %This allows me to use the align functionality.
+                     %If you find yourself trying to replicate
+                     %something you found online, ensure you're
+                     %loading the necessary packages!
+\usepackage{amsfonts}%Math font
+\usepackage{graphicx}%For including graphics
+\usepackage{hyperref}%For Hyperlinks
+\usepackage[shortlabels]{enumitem}% For enumerated lists with labels specified
+                                  % We had to run tlmgr_install("enumitem") in R
+\hypersetup{colorlinks = true,citecolor=black} %set citations to have black (not green) color
+\usepackage{natbib}        %For the bibliography
+\setlength{\bibsep}{0pt plus 0.3ex}
+\bibliographystyle{apalike}%For the bibliography
+\usepackage[margin=0.50in]{geometry}
+\usepackage{float}
+\usepackage{multicol}
+
+%fix for figures
+\usepackage{caption}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\vspace{-1in}
+\title{Lab XX -- MATH 240 -- Computational Statistics}
+
+\author{
+  First Author \\
+  Affiliation  \\
+  Department  \\
+  {\tt email@domain}
+}
+
+\date{}
+
+\maketitle
+
+\begin{multicols}{2}
+\begin{abstract}
+First part of a three-part lab that involves working with the program Essentia in order to retrieve data from song libraries in order to determine how much a particular artist has contributed to a work with multiple authors. As part of task 1, I created a batch file that automatically processes the Essentia command for every song within the MUSIC directory. Following this, I became familiar with how to use the jsonlite package for R, and extracted data using this package from an example song that was provided within my assignment's repository.
+\end{abstract}
+
+\noindent \textbf{Keywords:} For Loops; Packages; Lists;
+
+\section{Introduction}
+Week 2's lab assignment was the first part of a three-part project that involves the sourcing and extraction of music data from a program called Essentia in an effort to determine the degree of contribution among different bands collaborating on the same song.  This program allows us to extract a wide variety of data from songs, though we must use its command prompt   to access it. However, Essentia's command prompt must be entered for every single song within the directory that you are looking to extract data from, which can take quite some time depending on the size of the song directory. To remedy such, task one of the assignment involves creating a batch file that will automate the generation of commands for all songs which can be used to process the entire song directory at once. After creating our batch file within part one, we begin proccessing json files through the jsonlite package for R, which allows us to extract the data for each song from Essentia.
+
+
+
+
+\section{Methods}
+ As mentioned above, part one of this assignment involves the creation of a batch file in order to process every single song within our music directory through Essentia simultaneously. To create this batch file, a vector was created containing the names of all files in our music directory, so that we'd be able to reference them within R. Then, we used the strcount function from the stringr package in order to subset all directories within the MUSIC folder into the classifiation of artist, album, and track. Following such, two loops were established in order to iterate among all albums and song within the MUSIC folder. Within these loops, the strcount function was used to extract the name of the artist, album, and track from each song with each being assigned to an object. These objects were then pasted together with our necessary command line, and saved to an empty vector that would populate with every iteration of the loop. This code was then written to a text file, ready to be executed as a batch. For the second part of the lab, we processed an example json file using the jsonlite package for R. Using the fromJSON function, I was able to extract all Essentia data from the provided example json file. Furthermore, specific values, including: average loudness, mean of spectral energy, dancability, bpm, key, scale, and length were extracted using commands found on Essentia's website. Each type of data was then assigned to objects and printed using the paste function.
+ 
+
+
+\section{Results}
+Tie together the Introduction -- where you introduce the problem at hand -- and the methods --  what you propose to do to answer the question. Present your data, the results of your analyses, and how each reported aspect contributes to answering the question. This section should include table(s), statistic(s), and graphical displays. Make sure to put the results in a sensible order and that each result contributes a logical and developed solution. It should not just be a list. Avoid being repetitive. 
+
+\subsection{Results Subsection}
+Subsections can be helpful for the Results section, too. This can be particularly helpful if you have different questions to answer. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{2em}
+
+\noindent\textbf{Bibliography:} Note that when you add citations to your bib.bib file \emph{and}
+you cite them in your document, the bibliography section will automatically populate here.
+
+\begin{tiny}
+\bibliography{bib}
+\end{tiny}
+\end{multicols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\onecolumn
+\section{Appendix}
+
+If you have anything extra, you can add it here in the appendix. This can include images or tables that don't work well in the two-page setup, code snippets you might want to share, etc.
+
+\end{document}
