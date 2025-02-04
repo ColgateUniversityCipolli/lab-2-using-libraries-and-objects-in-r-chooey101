@@ -77,8 +77,5 @@ Week 2's lab assignment was the first part of a three-part project that involves
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \onecolumn
-\section{Appendix}
-
-If you have anything extra, you can add it here in the appendix. This can include images or tables that don't work well in the two-page setup, code snippets you might want to share, etc.
 
 \end{document}
